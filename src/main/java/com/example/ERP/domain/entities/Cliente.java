@@ -1,35 +1,52 @@
 package com.example.ERP.domain.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "Cliente")  // Asegúrate de que el nombre de la tabla coincide con la de la BD
+@Table(name = "Cliente")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Si la BD tiene autoincrement
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre", nullable = false)  // Coincide con la BD
+    @Column(nullable = false, unique = true, length = 20)
+    private String cedula;
+
+    @Column(nullable = false, length = 100)
     private String nombre;
 
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(nullable = false, length = 100)
+    private String apellido;
+
+    @Column(unique = true, length = 100)
     private String email;
 
-    public Cliente() {}
+    @Column(length = 20)
+    private String telefono;
 
-    public Cliente(String nombre, String email) {
+    @Column(length = 255)
+    private String direccion;
+
+    @Column(name = "fecha_registro", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDate fechaRegistro;
+
+    // Constructor con parámetros opcional si lo necesitas
+    public Cliente(String cedula, String nombre, String apellido, String email, String telefono, String direccion) {
+        this.cedula = cedula;
         this.nombre = nombre;
+        this.apellido = apellido;
         this.email = email;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.fechaRegistro = LocalDate.now();
     }
-
-    // Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
 }

@@ -1,30 +1,42 @@
 package com.example.ERP.web.controllers;
 
+import com.example.ERP.application.services.ClienteService;
 import com.example.ERP.domain.entities.Cliente;
-import com.example.ERP.infrastructure.repositories.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/api/clientes")
 public class ClienteController {
 
-    private final ClienteRepository clienteRepository;
+    @Autowired
+    private ClienteService clienteService;
 
-    public ClienteController(ClienteRepository clienteRepository) {
-        this.clienteRepository = clienteRepository;
-    }
-
-    // Endpoint para obtener todos los clientes
     @GetMapping
-    public List<Cliente> getAllClientes() {
-        return clienteRepository.findAll();
+    public List<Cliente> obtenerClientes() {
+        return clienteService.obtenerTodos();
     }
 
-    // Endpoint para buscar un cliente por email
-    @GetMapping("/{email}")
-    public Cliente getClienteByEmail(@PathVariable String email) {
-        return clienteRepository.findByEmail(email);
+    @GetMapping("/{id}")
+    public Optional<Cliente> obtenerClientePorId(@PathVariable Long id) {
+        return clienteService.obtenerPorId(id);
+    }
+
+    @PostMapping
+    public Cliente crearCliente(@RequestBody Cliente cliente) {
+        return clienteService.crearCliente(cliente);
+    }
+
+    @PutMapping("/{id}")
+    public Cliente actualizarCliente(@PathVariable Long id, @RequestBody Cliente clienteActualizado) {
+        return clienteService.actualizarCliente(id, clienteActualizado);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminarCliente(@PathVariable Long id) {
+        clienteService.eliminarCliente(id);
     }
 }
