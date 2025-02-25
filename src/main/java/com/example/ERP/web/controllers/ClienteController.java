@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/clientes")
+@RequestMapping("/clientes")
 public class ClienteController {
 
     @Autowired
@@ -17,9 +17,10 @@ public class ClienteController {
 
     @GetMapping
     public List<Cliente> obtenerClientes() {
-        return clienteService.obtenerTodos();
+        List<Cliente> clientes = clienteService.obtenerTodos();
+        System.out.println("Clientes obtenidos: " + clientes); // Para depuración
+        return clientes;
     }
-
     @GetMapping("/{id}")
     public Optional<Cliente> obtenerClientePorId(@PathVariable Long id) {
         return clienteService.obtenerPorId(id);
@@ -28,11 +29,6 @@ public class ClienteController {
     @PostMapping
     public Cliente crearCliente(@RequestBody Cliente cliente) {
         return clienteService.crearCliente(cliente);
-    }
-
-    @PutMapping("/{id}")
-    public Cliente actualizarCliente(@PathVariable Long id, @RequestBody Cliente clienteActualizado) {
-        return clienteService.actualizarCliente(id, clienteActualizado);
     }
 
     @DeleteMapping("/{id}")

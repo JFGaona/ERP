@@ -30,16 +30,6 @@ public class MarcoDeLenteController {
         return marcoRepository.save(marco);
     }
 
-    @PutMapping("/{id}")
-    public MarcoDeLente actualizarMarco(@PathVariable Long id, @RequestBody MarcoDeLente marcoActualizado) {
-        return marcoRepository.findById(id).map(marco -> {
-            marco.setModelo(marcoActualizado.getModelo());
-            marco.setMarca(marcoActualizado.getMarca());
-            marco.setCantidadDisponible(marcoActualizado.getCantidadDisponible());
-            return marcoRepository.save(marco);
-        }).orElseThrow(() -> new RuntimeException("Marco no encontrado"));
-    }
-
     @DeleteMapping("/{id}")
     public void eliminarMarco(@PathVariable Long id) {
         marcoRepository.deleteById(id);

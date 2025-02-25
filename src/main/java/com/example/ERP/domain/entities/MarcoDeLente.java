@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "MarcoDeLente")
 @Getter
@@ -29,17 +31,9 @@ public class MarcoDeLente {
     private int cantidadDisponible;
 
     @Column(precision = 10, scale = 2)
-    private Double precio;
+    private BigDecimal precio;
 
     @Column(length = 10, nullable = false)
     private String estado = "DISPONIBLE";
 
-    public MarcoDeLente(String modelo, String marca, String descripcion, int cantidadDisponible, Double precio) {
-        this.modelo = modelo;
-        this.marca = marca;
-        this.descripcion = descripcion;
-        this.cantidadDisponible = cantidadDisponible;
-        this.precio = precio;
-        this.estado = "DISPONIBLE";
-    }
 }
