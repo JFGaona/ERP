@@ -18,35 +18,52 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter
     @Column(nullable = false, unique = true, length = 20)
     private String cedula;
 
+    @Getter
     @Column(nullable = false, length = 100)
     private String nombre;
 
+    @Getter
     @Column(nullable = false, length = 100)
     private String apellido;
 
+    @Getter
     @Column(unique = true, length = 100)
     private String email;
 
+    @Getter
     @Column(length = 20)
     private String telefono;
 
+    @Getter
     @Column(length = 255)
     private String direccion;
 
+    @Getter
     @Column(name = "fecha_registro", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDate fechaRegistro;
 
-    // Constructor con parámetros opcional si lo necesitas
-    public Cliente(String cedula, String nombre, String apellido, String email, String telefono, String direccion) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.telefono = telefono;
-        this.direccion = direccion;
-        this.fechaRegistro = LocalDate.now();
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
 }

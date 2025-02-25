@@ -30,14 +30,6 @@ public class HistoriaClinicaController {
         return historiaClinicaRepository.save(historia);
     }
 
-    @PutMapping("/{id}")
-    public HistoriaClinica actualizarHistoria(@PathVariable Long id, @RequestBody HistoriaClinica historiaActualizada) {
-        return historiaClinicaRepository.findById(id).map(historia -> {
-            historia.setDescripcion(historiaActualizada.getDescripcion());
-            historia.setFechaConsulta(historiaActualizada.getFechaConsulta());
-            return historiaClinicaRepository.save(historia);
-        }).orElseThrow(() -> new RuntimeException("Historia Clínica no encontrada"));
-    }
 
     @DeleteMapping("/{id}")
     public void eliminarHistoria(@PathVariable Long id) {

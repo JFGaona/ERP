@@ -30,14 +30,6 @@ public class HistoriaClinicaService {
         return historiaClinicaRepository.save(historia);
     }
 
-    public HistoriaClinica actualizarHistoria(Long id, HistoriaClinica historiaActualizada) {
-        return historiaClinicaRepository.findById(id).map(historia -> {
-            historia.setDescripcion(historiaActualizada.getDescripcion());
-            historia.setFechaConsulta(historiaActualizada.getFechaConsulta());
-            return historiaClinicaRepository.save(historia);
-        }).orElseThrow(() -> new RuntimeException("Historia Clínica no encontrada"));
-    }
-
     public void eliminarHistoria(Long id) {
         historiaClinicaRepository.deleteById(id);
     }

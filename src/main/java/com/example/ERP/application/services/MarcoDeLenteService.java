@@ -34,15 +34,6 @@ public class MarcoDeLenteService {
         return marcoRepository.save(marco);
     }
 
-    public MarcoDeLente actualizarMarco(Long id, MarcoDeLente marcoActualizado) {
-        return marcoRepository.findById(id).map(marco -> {
-            marco.setModelo(marcoActualizado.getModelo());
-            marco.setMarca(marcoActualizado.getMarca());
-            marco.setCantidadDisponible(marcoActualizado.getCantidadDisponible());
-            marco.setEstado(marcoActualizado.getEstado());
-            return marcoRepository.save(marco);
-        }).orElseThrow(() -> new RuntimeException("Marco no encontrado"));
-    }
 
     public void eliminarMarco(Long id) {
         marcoRepository.deleteById(id);

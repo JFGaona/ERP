@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.time.LocalDate;
 
 @Entity
@@ -27,10 +26,4 @@ public class HistoriaClinica {
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
-
-    public HistoriaClinica(String descripcion, Cliente cliente) {
-        this.descripcion = descripcion;
-        this.fechaConsulta = LocalDate.now();
-        this.cliente = cliente;
-    }
 }
