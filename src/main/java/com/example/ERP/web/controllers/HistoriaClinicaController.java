@@ -1,38 +1,55 @@
 package com.example.ERP.web.controllers;
 
 import com.example.ERP.domain.entities.HistoriaClinica;
-import com.example.ERP.infrastructure.repositories.HistoriaClinicaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.ERP.application.services.HistoriaClinicaService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/historias")
 public class HistoriaClinicaController {
 
-    @Autowired
-    private HistoriaClinicaRepository historiaClinicaRepository;
+    private final HistoriaClinicaService historiaClinicaService;
+
+    public HistoriaClinicaController(HistoriaClinicaService historiaClinicaService) {
+        this.historiaClinicaService = historiaClinicaService;
+    }
 
     @GetMapping
-    public List<HistoriaClinica> obtenerHistorias() {
-        return historiaClinicaRepository.findAll();
+    public ResponseEntity<List<HistoriaClinica>> obtenerTodas() {
+        return ResponseEntity.ok(historiaClinicaService.obtenerTodas());
     }
 
     @GetMapping("/{id}")
-    public Optional<HistoriaClinica> obtenerHistoriaPorId(@PathVariable Long id) {
-        return historiaClinicaRepository.findById(id);
+    public ResponseEntity<HistoriaClinica> obtenerPorId(@PathVariable Long id) {
+        HistoriaClinica historia = historiaClinicaService.obtenerPorId(id);
+        return ResponseEntity.ok(historia);
     }
 
     @PostMapping
-    public HistoriaClinica crearHistoria(@RequestBody HistoriaClinica historia) {
-        return historiaClinicaRepository.save(historia);
+    public ResponseEntity<HistoriaClinica> crearHistoria(@RequestBody HistoriaClinica historia) {
+        HistoriaClinica nueva = historiaClinicaService.crearHistoria(historia);
+        return ResponseEntity.ok(nueva);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<HistoriaClinica> actualizarHistoria(@PathVariable Long id, @RequestBody HistoriaClinica historia) {
+        HistoriaClinica actualizada = historiaClinicaService.actualizarHistoria(id, historia);
+        return ResponseEntity.ok(actualizada);
+    }
 
     @DeleteMapping("/{id}")
-    public void eliminarHistoria(@PathVariable Long id) {
-        historiaClinicaRepository.deleteById(id);
+    public ResponseEntity<Void> eliminarHistoria(@PathVariable Long id) {
+        historiaClinicaService.eliminarHistoria(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // Endpoint para obtener historias por ID de cliente
+    @GetMapping("/cliente/{clienteId}")
+    public ResponseEntity<List<HistoriaClinica>> obtenerPorCliente(@PathVariable Long clienteId) {
+        List<HistoriaClinica> historias = historiaClinicaService.obtenerPorClienteId(clienteId);
+        return ResponseEntity.ok(historias);
     }
 }

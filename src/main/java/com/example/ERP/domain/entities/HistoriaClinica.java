@@ -1,16 +1,15 @@
 package com.example.ERP.domain.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "HistoriaClinica")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class HistoriaClinica {
 
     @Id
@@ -20,10 +19,10 @@ public class HistoriaClinica {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String descripcion;
 
-    @Column(nullable = false)
+    @Column(name = "fecha_consulta", nullable = false)
     private LocalDate fechaConsulta;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 }

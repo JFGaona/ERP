@@ -1,17 +1,15 @@
 package com.example.ERP.domain.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "MarcoDeLente")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class MarcoDeLente {
 
     @Id
@@ -28,12 +26,11 @@ public class MarcoDeLente {
     private String descripcion;
 
     @Column(nullable = false)
-    private int cantidadDisponible;
+    private Integer cantidadDisponible;
 
     @Column(precision = 10, scale = 2)
     private BigDecimal precio;
 
     @Column(length = 10, nullable = false)
-    private String estado = "DISPONIBLE";
-
+    private String estado; // Valores esperados: "DISPONIBLE" o "AGOTADO"
 }

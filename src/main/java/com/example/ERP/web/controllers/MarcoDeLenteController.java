@@ -1,37 +1,62 @@
 package com.example.ERP.web.controllers;
 
 import com.example.ERP.domain.entities.MarcoDeLente;
-import com.example.ERP.infrastructure.repositories.MarcoDeLenteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.ERP.application.services.MarcoDeLenteService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/marcos")
 public class MarcoDeLenteController {
 
-    @Autowired
-    private MarcoDeLenteRepository marcoRepository;
+    private final MarcoDeLenteService marcoDeLenteService;
+
+    public MarcoDeLenteController(MarcoDeLenteService marcoDeLenteService) {
+        this.marcoDeLenteService = marcoDeLenteService;
+    }
 
     @GetMapping
-    public List<MarcoDeLente> obtenerMarcos() {
-        return marcoRepository.findAll();
+    public ResponseEntity<List<MarcoDeLente>> obtenerTodos() {
+        return ResponseEntity.ok(marcoDeLenteService.obtenerTodos());
     }
 
     @GetMapping("/{id}")
-    public Optional<MarcoDeLente> obtenerMarcoPorId(@PathVariable Long id) {
-        return marcoRepository.findById(id);
+    public ResponseEntity<MarcoDeLente> obtenerPorId(@PathVariable Long id) {
+        MarcoDeLente marco = marcoDeLenteService.obtenerPorId(id);
+        return ResponseEntity.ok(marco);
     }
 
     @PostMapping
-    public MarcoDeLente crearMarco(@RequestBody MarcoDeLente marco) {
-        return marcoRepository.save(marco);
+    public ResponseEntity<MarcoDeLente> crearMarco(@RequestBody MarcoDeLente marco) {
+        MarcoDeLente nuevo = marcoDeLenteService.crearMarco(marco);
+        return ResponseEntity.ok(nuevo);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<MarcoDeLente> actualizarMarco(@PathVariable Long id, @RequestBody MarcoDeLente marco) {
+        MarcoDeLente actualizado = marcoDeLenteService.actualizarMarco(id, marco);
+        return ResponseEntity.ok(actualizado);
     }
 
     @DeleteMapping("/{id}")
-    public void eliminarMarco(@PathVariable Long id) {
-        marcoRepository.deleteById(id);
+    public ResponseEntity<Void> eliminarMarco(@PathVariable Long id) {
+        marcoDeLenteService.eliminarMarco(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // Endpoint para buscar marcos por modelo (búsqueda parcial)
+    @GetMapping("/buscar/modelo")
+    public ResponseEntity<List<MarcoDeLente>> obtenerPorModelo(@RequestParam String modelo) {
+        List<MarcoDeLente> marcos = marcoDeLenteService.obtenerPorModelo(modelo);
+        return ResponseEntity.ok(marcos);
+    }
+
+    // Endpoint para buscar marcos por estado
+    @GetMapping("/buscar/estado")
+    public ResponseEntity<List<MarcoDeLente>> obtenerPorEstado(@RequestParam String estado) {
+        List<MarcoDeLente> marcos = marcoDeLenteService.obtenerPorEstado(estado);
+        return ResponseEntity.ok(marcos);
     }
 }

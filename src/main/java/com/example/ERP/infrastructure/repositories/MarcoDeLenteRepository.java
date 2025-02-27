@@ -10,8 +10,7 @@ import java.util.List;
 public interface MarcoDeLenteRepository extends JpaRepository<MarcoDeLente, Long> {
 
     // Buscar marcos de un modelo específico
-    List<MarcoDeLente> findByModelo(String modelo);
-
+    List<MarcoDeLente> findByModeloContainingIgnoreCase(String modelo);
     // Obtener todos los marcos disponibles
     List<MarcoDeLente> findByEstado(String estado);
 }
