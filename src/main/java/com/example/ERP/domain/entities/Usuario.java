@@ -1,29 +1,29 @@
 package com.example.ERP.domain.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 
 @Entity
-@Table(name = "Usuario", schema = "dbo")
+@Table(name = "usuario")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Usuario {
+public class Usuario extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false, length = 50)
-    private String username;
+    @NotBlank(message = "El nombre no puede estar vacío")
+    @Column(nullable = false)
+    private String nombre;
 
-    @Column(unique = true, nullable = false, length = 100)
+    @Email(message = "El email no tiene un formato válido")
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(length = 20)
-    private String telefono;
-
-    @Column(nullable = false, length = 255)
+    @NotBlank(message = "La contraseña no puede estar vacía")
+    @Column(nullable = false)
     private String password;
 
     @ManyToOne(fetch = FetchType.LAZY)

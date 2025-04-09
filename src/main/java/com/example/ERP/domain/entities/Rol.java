@@ -1,19 +1,19 @@
 package com.example.ERP.domain.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 
 @Entity
-@Table(name = "Rol")
+@Table(name = "rol")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Rol {
+public class Rol extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false, length = 50)
+    @NotBlank(message = "El nombre del rol no puede estar vacío")
+    @Column(nullable = false, unique = true)
     private String nombre;
 }
