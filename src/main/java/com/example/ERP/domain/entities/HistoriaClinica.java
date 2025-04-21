@@ -8,7 +8,7 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "historia_clinica")
+@Table(name = "HistoriaCLinica")
 @Data
 public class HistoriaClinica extends Auditable {
 

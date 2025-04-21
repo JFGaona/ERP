@@ -7,7 +7,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "marco_de_lente")
+@Table(name = "MarcoDeLente")
 @Data
 public class MarcoDeLente extends Auditable {
 

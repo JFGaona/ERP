@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "Cliente")
 @Data
 public class Cliente extends Auditable {
 

@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "Usuario")
 @Data
 public class Usuario extends Auditable {
 
