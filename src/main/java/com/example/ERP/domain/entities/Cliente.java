@@ -1,69 +1,41 @@
 package com.example.ERP.domain.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.time.LocalDate;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
 
 @Entity
-@Table(name = "Cliente")
-@Getter
-@Setter
-@NoArgsConstructor
-public class Cliente {
+@Table(name = "cliente")
+@Data
+public class Cliente extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
+    @NotBlank(message = "La cédula no puede estar vacía")
+    @Size(min = 5, max = 20, message = "La cédula debe tener entre 5 y 20 caracteres")
     @Column(nullable = false, unique = true, length = 20)
     private String cedula;
 
-    @Getter
+    @NotBlank(message = "El nombre no puede estar vacío")
+    @Size(max = 100, message = "El nombre no puede exceder los 100 caracteres")
     @Column(nullable = false, length = 100)
     private String nombre;
 
-    @Getter
+    @NotBlank(message = "El apellido no puede estar vacío")
+    @Size(max = 100, message = "El apellido no puede exceder los 100 caracteres")
     @Column(nullable = false, length = 100)
     private String apellido;
 
-    @Getter
+    @Email(message = "El email no tiene un formato válido")
+    @Size(max = 100, message = "El email no puede exceder los 100 caracteres")
     @Column(unique = true, length = 100)
     private String email;
 
-    @Getter
+    @Size(max = 20, message = "El teléfono no puede exceder los 20 caracteres")
     @Column(length = 20)
     private String telefono;
-
-    @Getter
-    @Column(length = 255)
-    private String direccion;
-
-    @Getter
-    @Column(name = "fecha_registro", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDate fechaRegistro;
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
 }
