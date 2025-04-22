@@ -5,10 +5,14 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "Cliente", schema = "dbo")
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class Cliente extends Auditable {
 
     @Id
@@ -38,4 +42,7 @@ public class Cliente extends Auditable {
     @Size(max = 20, message = "El teléfono no puede exceder los 20 caracteres")
     @Column(length = 20)
     private String telefono;
+
+    @Column(name = "fecha_registro")
+    private LocalDateTime fechaRegistro;
 }

@@ -46,7 +46,7 @@ public class UsuarioService {
                 usuarioRepository.findByEmail(usuarioActualizado.getEmail()).isPresent()) {
             throw new DuplicateResourceException("El email " + usuarioActualizado.getEmail() + " ya está en uso");
         }
-        usuario.setNombre(usuarioActualizado.getNombre());
+        usuario.setUsername(usuarioActualizado.getUsername());
         usuario.setEmail(usuarioActualizado.getEmail());
         if (!usuarioActualizado.getPassword().isEmpty()) {
             usuario.setPassword(passwordEncoder.encode(usuarioActualizado.getPassword()));

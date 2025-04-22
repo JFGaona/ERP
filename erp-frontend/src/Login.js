@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
+import './Login.css'; // Importación del CSS
 
 const Login = () => {
     const [email, setEmail] = useState('');

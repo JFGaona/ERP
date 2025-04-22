@@ -3,12 +3,14 @@ package com.example.ERP.domain.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "marco_de_lente")
+@Table(name = "MarcoDeLente", schema = "dbo")
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class MarcoDeLente extends Auditable {
 
     @Id

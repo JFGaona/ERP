@@ -10,7 +10,7 @@ public class UsuarioMapper {
     public UsuarioDTO toDTO(Usuario usuario) {
         UsuarioDTO dto = new UsuarioDTO();
         dto.setId(usuario.getId());
-        dto.setNombre(usuario.getNombre());
+        dto.setUsername(usuario.getUsername());
         dto.setEmail(usuario.getEmail());
         dto.setPassword(usuario.getPassword());
         dto.setRolId(usuario.getRol().getId());
@@ -20,7 +20,7 @@ public class UsuarioMapper {
     public Usuario toEntity(UsuarioDTO dto, Rol rol) {
         Usuario usuario = new Usuario();
         usuario.setId(dto.getId());
-        usuario.setNombre(dto.getNombre());
+        usuario.setUsername(dto.getUsername());
         usuario.setEmail(dto.getEmail());
         usuario.setPassword(dto.getPassword());
         usuario.setRol(rol);
