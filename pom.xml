@@ -69,6 +69,12 @@
 			<version>2.0.2</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>8.0.1.Final</version>
+		</dependency>
+
 		<!-- JWT para manejar tokens de autenticación -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>

@@ -5,10 +5,12 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name = "Cliente")
+@Table(name = "Cliente", schema = "dbo")
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class Cliente extends Auditable {
 
     @Id

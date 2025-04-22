@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "HistoriaCLinica")
+@Table(name = "HistoriaCLinica", schema = "dbo")
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class HistoriaClinica extends Auditable {
 
     @Id
