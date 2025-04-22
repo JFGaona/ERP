@@ -18,7 +18,7 @@ public class Usuario extends Auditable {
 
     @NotBlank(message = "El nombre no puede estar vacío")
     @Column(nullable = false)
-    private String nombre;
+    private String username;
 
     @Email(message = "El email no tiene un formato válido")
     @Column(nullable = false, unique = true)

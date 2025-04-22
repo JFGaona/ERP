@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "HistoriaCLinica", schema = "dbo")
+@Table(name = "HistoriaClinica", schema = "dbo")
 @Data
 @EqualsAndHashCode(callSuper=false)
 public class HistoriaClinica extends Auditable {
