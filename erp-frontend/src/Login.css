@@ -1,5 +1,3 @@
-/* Login.css */
-
 /* Reset de estilos por defecto */
 * {
     margin: 0;
@@ -15,6 +13,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Contenedor principal para centrar el formulario */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 /* Estilo del contenedor del login */
@@ -60,6 +67,25 @@ body {
 .input-group input:focus {
     border-color: #1a2a44;
     outline: none;
+}
+
+/* Estilo para el grupo de contraseña con el ícono de ojo */
+.password-group {
+    position: relative;
+}
+
+.password-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #666;
+    font-size: 1.2rem;
 }
 
 /* Estilo del botón de login */

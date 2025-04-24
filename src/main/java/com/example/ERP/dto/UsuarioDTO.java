@@ -2,6 +2,7 @@ package com.example.ERP.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class UsuarioDTO {
     private Long id;
@@ -10,6 +11,7 @@ public class UsuarioDTO {
     @Email(message = "El email no tiene un formato válido")
     private String email;
     @NotBlank(message = "La contraseña no puede estar vacía")
+    @Size(min = 5, message = "La contraseña debe tener al menos 5 caracteres")
     private String password;
     private Long rolId;
 

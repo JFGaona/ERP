@@ -19,7 +19,15 @@ public abstract class Auditable {
     @Column(name = "created_by", updatable = false)
     private String createdBy;
 
+    @CreatedDate
+    @Column(name = "created_date", updatable = false)
+    private LocalDateTime createdDate;
+
     @LastModifiedBy
     @Column(name = "updated_by")
     private String updatedBy;
+
+    @LastModifiedDate
+    @Column(name = "updated_date")
+    private LocalDateTime updatedDate;
 }

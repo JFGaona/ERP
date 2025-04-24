@@ -1,34 +1,36 @@
 package com.example.ERP.domain.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+
+import java.io.Serializable;
 
 @Entity
-@Table(name = "Usuario", schema = "dbo")
-@Data
-@EqualsAndHashCode(callSuper=false)
-public class Usuario extends Auditable {
+@Table(name = "Usuario",schema = "dbo")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+public class Usuario extends Auditable implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "El nombre no puede estar vacío")
-    @Column(nullable = false)
+    @Column(unique = true)
     private String username;
 
-    @Email(message = "El email no tiene un formato válido")
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
-    @NotBlank(message = "La contraseña no puede estar vacía")
+    private String telefono;
+
     @Column(nullable = false)
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER) // Cambiado de LAZY a EAGER
     @JoinColumn(name = "rol_id", nullable = false)
     private Rol rol;
 }
