@@ -7,12 +7,23 @@ const ProtectedRoute = ({ children, requiredRole }) => {
     if (!token) {
         return <Navigate to="/" />;
     }
-    const decoded = jwtDecode(token);
-    const userRole = decoded.role;
-    if (requiredRole && userRole !== requiredRole) {
+
+    try {
+        const decoded = jwtDecode(token);
+        const currentTime = Date.now() / 1000;
+        if (decoded.exp < currentTime) {
+            localStorage.removeItem('token');
+            return <Navigate to="/" />;
+        }
+        const userRole = decoded.role;
+        if (requiredRole && userRole !== requiredRole) {
+            return <Navigate to="/" />;
+        }
+        return children;
+    } catch (error) {
+        localStorage.removeItem('token');
         return <Navigate to="/" />;
     }
-    return children;
 };
 
 export default ProtectedRoute;

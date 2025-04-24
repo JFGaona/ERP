@@ -31,6 +31,11 @@ public class UsuarioService {
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario con ID " + id + " no encontrado"));
     }
 
+    public Usuario obtenerPorEmail(String email) {
+        return usuarioRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario con email " + email + " no encontrado"));
+    }
+
     public Usuario crearUsuario(Usuario usuario) {
         if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
             throw new DuplicateResourceException("Ya existe un usuario con el email " + usuario.getEmail());
@@ -48,7 +53,7 @@ public class UsuarioService {
         }
         usuario.setUsername(usuarioActualizado.getUsername());
         usuario.setEmail(usuarioActualizado.getEmail());
-        if (!usuarioActualizado.getPassword().isEmpty()) {
+        if (usuarioActualizado.getPassword() != null && !usuarioActualizado.getPassword().isEmpty()) {
             usuario.setPassword(passwordEncoder.encode(usuarioActualizado.getPassword()));
         }
         usuario.setRol(usuarioActualizado.getRol());
