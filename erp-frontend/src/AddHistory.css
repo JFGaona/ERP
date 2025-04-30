@@ -1,17 +1,27 @@
 .add-history-container {
-    max-width: 500px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1a2a44 0%, #2c4066 100%);
 }
 
-.add-history-container h2 {
+.add-history-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 500px;
     text-align: center;
-    color: #2c3e50;
-    font-size: 2rem;
-    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.add-history-box h2 {
+    color: #1a2a44;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
     font-weight: 600;
     letter-spacing: 1px;
 }
@@ -26,21 +36,23 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    text-align: left;
 }
 
 .form-group label {
-    color: #2c3e50;
-    font-size: 1.1rem;
+    color: #333;
+    font-size: 0.95rem;
     font-weight: 500;
 }
 
 .form-group input,
 .form-group textarea {
-    padding: 12px;
+    padding: 0.9rem;
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
 }
 
 .form-group textarea {
@@ -50,9 +62,10 @@
 
 .form-group input:focus,
 .form-group textarea:focus {
+    border-color: #1a2a44;
+    box-shadow: 0 0 8px rgba(26, 42, 68, 0.2);
     outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    background: #fff;
 }
 
 .form-actions {
@@ -61,45 +74,34 @@
     gap: 15px;
 }
 
-.submit-button, .back-button {
+.submit-button,
+.back-button {
     flex: 1;
-    padding: 12px;
+    padding: 0.9rem;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-size: 1rem;
     font-weight: 500;
     color: #ffffff;
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    transition: transform 0.1s ease, background 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .submit-button {
-    background-color: #28a745;
+    background: linear-gradient(90deg, #28a745 0%, #34c759 100%);
 }
 
 .submit-button:hover {
-    background-color: #218838;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(90deg, #218838 0%, #2ea44f 100%);
+    transform: scale(1.02);
 }
 
 .back-button {
-    background-color: #6c757d;
+    background: linear-gradient(90deg, #6c757d 0%, #5a6268 100%);
 }
 
 .back-button:hover {
-    background-color: #5a6268;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.error-message {
-    text-align: center;
-    color: #dc3545;
-    font-size: 1rem;
-    margin-bottom: 20px;
-    background-color: #f8d7da;
-    padding: 10px;
-    border-radius: 8px;
+    background: linear-gradient(90deg, #5a6268 0%, #495057 100%);
+    transform: scale(1.02);
 }

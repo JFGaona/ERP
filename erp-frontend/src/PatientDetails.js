@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import './PatientDetails.css';
 
 const PatientDetails = () => {
     const { id } = useParams();
     const [patient, setPatient] = useState(null);
-    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -23,15 +23,35 @@ const PatientDetails = () => {
             } catch (err) {
                 console.error('Error al obtener los detalles del paciente:', err);
                 if (err.response && err.response.status === 403) {
-                    setError('Acceso denegado. Solo los administradores pueden ver los detalles.');
+                    toast.error('Acceso denegado. Solo los administradores pueden ver los detalles.', {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
                 } else {
-                    setError('Error al cargar los detalles del paciente. Intenta de nuevo.');
+                    toast.error('Error al cargar los detalles del paciente. Intenta de nuevo.', {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
                 }
+                // Redirigir al dashboard después de mostrar el error
+                setTimeout(() => {
+                    navigate('/admin-dashboard');
+                }, 3000);
             }
         };
 
         fetchPatientDetails();
-    }, [id]);
+    }, [id, navigate]);
 
     const handleBack = () => {
         navigate('/admin-dashboard');
@@ -45,19 +65,8 @@ const PatientDetails = () => {
         navigate(`/patient-history/${id}`);
     };
 
-    if (error) {
-        return (
-            <div className="error-message">
-                {error}
-                <button onClick={handleBack} className="back-button">
-                    Volver al Dashboard
-                </button>
-            </div>
-        );
-    }
-
     if (!patient) {
-        return <div>Cargando...</div>;
+        return <div className="loading-message">Cargando...</div>;
     }
 
     return (
