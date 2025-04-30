@@ -77,7 +77,7 @@ const PatientRegistration = () => {
 
     return (
         <div className="patient-registration-container">
-            <h2>Register New Patient</h2>
+            <h2>Registrar Paciente Nuevo</h2>
             {error && <div className="error-message">{error}</div>}
             <form onSubmit={handleSubmit} className="patient-form">
                 <div className="form-group">
@@ -140,7 +140,7 @@ const PatientRegistration = () => {
                         Volver
                     </button>
                     <button type="submit" className="submit-button">
-                        Register Patient
+                        Registrar Paciente
                     </button>
                 </div>
             </form>

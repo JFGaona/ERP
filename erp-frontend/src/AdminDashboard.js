@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import Breadcrumb from "./Breadcrumb";
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
@@ -42,7 +43,8 @@ const AdminDashboard = () => {
 
     return (
         <div className="admin-dashboard">
-            <h1>Dashboard Admin</h1>
+            <Breadcrumb />
+            <h1>Panel De Administrador</h1>
             <div className="dashboard-actions">
                 <button onClick={handleLogout} className="logout-button">
                     Cerrar Sesión
