@@ -58,4 +58,13 @@ public class ClienteController {
         clienteService.eliminarCliente(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search/by-term")
+    public ResponseEntity<List<ClienteDTO>> buscarPorNombreOrApellidoOrCedula(@RequestParam String termino) {
+        List<ClienteDTO> clientes = clienteService.buscarPorNombreOrApellidoOrCedula(termino)
+                .stream()
+                .map(clienteMapper::toDTO)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(clientes);
+    }
 }

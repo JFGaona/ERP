@@ -5,6 +5,7 @@ import './AdminDashboard.css';
 
 const AdminDashboard = () => {
     const [clients, setClients] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -12,7 +13,10 @@ const AdminDashboard = () => {
 
         const fetchClients = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/clientes', {
+                const endpoint = searchTerm
+                    ? `http://localhost:8080/api/clientes/search/by-term?termino=${encodeURIComponent(searchTerm)}`
+                    : 'http://localhost:8080/api/clientes';
+                const response = await axios.get(endpoint, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -24,12 +28,16 @@ const AdminDashboard = () => {
         };
 
         fetchClients();
-    }, []);
+    }, [searchTerm]);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('role');
         navigate('/');
+    };
+
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
     };
 
     return (
@@ -39,16 +47,28 @@ const AdminDashboard = () => {
                 <button onClick={handleLogout} className="logout-button">
                     Cerrar Sesión
                 </button>
+                <Link to="/inventory" className="inventory-button">
+                    Inventario
+                </Link>
                 <Link to="/patient-registration" className="register-button">
                     Registrar Nuevo Paciente
                 </Link>
             </div>
             <div className="client-list">
-                <h2>Clientes</h2>
+                <div className="client-list-header">
+                    <h2>Clientes</h2>
+                    <input
+                        type="text"
+                        placeholder="Buscar por nombre o cédula..."
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                        className="search-input"
+                    />
+                </div>
                 <ul>
                     {clients.map(client => (
                         <li key={client.id}>
-                            <Link to={`/edit-patient/${client.id}`} className="client-link">
+                            <Link to={`/patient-details/${client.id}`} className="client-link">
                                 {client.nombre} {client.apellido} - {client.cedula}
                             </Link>
                         </li>

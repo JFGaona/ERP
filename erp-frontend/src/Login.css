@@ -5,14 +5,15 @@
     box-sizing: border-box;
 }
 
-/* Fondo azul oscuro para el cuerpo */
+/* Fondo con gradiente para el cuerpo */
 body {
-    background-color: #1a2a44; /* Azul oscuro */
-    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1a2a44 0%, #2c4066 100%); /* Gradiente azul oscuro */
+    font-family: 'Poppins', sans-serif; /* Fuente moderna */
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 /* Contenedor principal para centrar el formulario */
@@ -24,15 +25,24 @@ body {
     height: 100%;
 }
 
-/* Estilo del contenedor del login */
+/* Estilo del contenedor del login con efecto de cristal */
 .login-box {
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.95); /* Fondo blanco con ligera transparencia */
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra más suave */
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     text-align: center;
+    backdrop-filter: blur(10px); /* Efecto de cristal */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Estilo de la imagen del logo */
+.login-logo {
+    width: 120px; /* Ajusta según el tamaño de tu logo */
+    margin-bottom: 1.5rem;
+    border-radius: 10px; /* Opcional: bordes redondeados para la imagen */
 }
 
 /* Estilo del título */
@@ -40,33 +50,38 @@ body {
     color: #1a2a44;
     margin-bottom: 1.5rem;
     font-size: 1.8rem;
+    font-weight: 600;
 }
 
 /* Estilo de los grupos de input */
 .input-group {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
     text-align: left;
 }
 
 .input-group label {
     display: block;
     color: #333;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 0.5rem;
+    font-size: 0.95rem;
 }
 
 .input-group input {
     width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 0.9rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
 }
 
 .input-group input:focus {
     border-color: #1a2a44;
+    box-shadow: 0 0 8px rgba(26, 42, 68, 0.2);
     outline: none;
+    background: #fff;
 }
 
 /* Estilo para el grupo de contraseña con el ícono de ojo */
@@ -82,32 +97,40 @@ body {
 
 .password-toggle {
     position: absolute;
-    right: 10px;
+    right: 12px;
     cursor: pointer;
     color: #666;
     font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.password-toggle:hover {
+    color: #1a2a44;
 }
 
 /* Estilo del botón de login */
 .login-button {
     width: 100%;
-    padding: 0.8rem;
-    background-color: #1a2a44;
+    padding: 0.9rem;
+    background: linear-gradient(90deg, #1a2a44 0%, #3b5998 100%); /* Gradiente en el botón */
     color: #ffffff;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: transform 0.1s ease, background 0.3s ease;
 }
 
 .login-button:hover {
-    background-color: #2c4066;
+    background: linear-gradient(90deg, #2c4066 0%, #4a69bd 100%);
+    transform: scale(1.02);
 }
 
 .login-button:disabled {
-    background-color: #cccccc;
+    background: #cccccc;
     cursor: not-allowed;
+    transform: none;
 }
 
 /* Estilo para el mensaje de error */
@@ -115,4 +138,7 @@ body {
     color: #ff4d4d;
     margin-bottom: 1rem;
     font-size: 0.9rem;
+    background: rgba(255, 77, 77, 0.1);
+    padding: 0.5rem;
+    border-radius: 5px;
 }

@@ -60,4 +60,8 @@ public class ClienteService {
         }
         clienteRepository.deleteById(id);
     }
+
+    public List<Cliente> buscarPorNombreOrApellidoOrCedula(String searchTerm) {
+        return clienteRepository.searchByNombreOrApellidoOrCedula(searchTerm);
+    }
 }

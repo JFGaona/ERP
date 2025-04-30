@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './PatientDetails.css';
 
 const PatientDetails = () => {
-    const { id } = useParams(); // Obtener el ID del cliente desde la URL
+    const { id } = useParams();
     const [patient, setPatient] = useState(null);
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -37,6 +37,14 @@ const PatientDetails = () => {
         navigate('/admin-dashboard');
     };
 
+    const handleEdit = () => {
+        navigate(`/edit-patient/${id}`);
+    };
+
+    const handleViewHistory = () => {
+        navigate(`/patient-history/${id}`);
+    };
+
     if (error) {
         return (
             <div className="error-message">
@@ -63,9 +71,17 @@ const PatientDetails = () => {
                 <p><strong>Email:</strong> {patient.email || 'No disponible'}</p>
                 <p><strong>Fecha de Registro:</strong> {patient.fechaRegistro || 'No disponible'}</p>
             </div>
-            <button onClick={handleBack} className="back-button">
-                Volver al Dashboard
-            </button>
+            <div className="action-buttons">
+                <button onClick={handleBack} className="back-button">
+                    Volver al Dashboard
+                </button>
+                <button onClick={handleViewHistory} className="history-button">
+                    Historia Clínica
+                </button>
+                <button onClick={handleEdit} className="edit-button">
+                    Editar información de cliente
+                </button>
+            </div>
         </div>
     );
 };

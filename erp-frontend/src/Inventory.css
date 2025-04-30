@@ -1,0 +1,122 @@
+.inventory-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.inventory-container h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.inventory-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.add-button, .back-button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #ffffff;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-button {
+    background-color: #28a745;
+}
+
+.add-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.back-button {
+    background-color: #6c757d;
+}
+
+.back-button:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.inventory-table th,
+.inventory-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.inventory-table th {
+    background-color: #3498db;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.inventory-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.inventory-table tr:hover {
+    background-color: #e9ecef;
+}
+
+.edit-action, .delete-action {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-action {
+    background-color: #ffc107;
+    color: #ffffff;
+}
+
+.edit-action:hover {
+    background-color: #e0a800;
+}
+
+.delete-action {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.delete-action:hover {
+    background-color: #c82333;
+}
+
+.error-message {
+    text-align: center;
+    color: #dc3545;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    background-color: #f8d7da;
+    padding: 10px;
+    border-radius: 8px;
+}

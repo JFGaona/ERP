@@ -1,5 +1,5 @@
-.patient-details-container {
-    max-width: 600px;
+.add-marco-container {
+    max-width: 500px;
     margin: 40px auto;
     padding: 30px;
     background-color: #ffffff;
@@ -7,7 +7,7 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.patient-details-container h2 {
+.add-marco-container h2 {
     text-align: center;
     color: #2c3e50;
     font-size: 2rem;
@@ -16,32 +16,54 @@
     letter-spacing: 1px;
 }
 
-.patient-info {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
+.add-marco-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.patient-info p {
-    margin: 10px 0;
-    font-size: 1.1rem;
-    color: #555;
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.patient-info p strong {
+.form-group label {
     color: #2c3e50;
-    margin-right: 10px;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
-.action-buttons {
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.form-actions {
     display: flex;
     justify-content: space-between;
     gap: 15px;
-    margin-top: 20px;
 }
 
-.back-button, .edit-button, .history-button {
+.submit-button, .back-button {
     flex: 1;
     padding: 12px;
     border: none;
@@ -54,32 +76,22 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.submit-button {
+    background-color: #28a745;
+}
+
+.submit-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
 .back-button {
     background-color: #6c757d;
 }
 
 .back-button:hover {
     background-color: #5a6268;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.history-button {
-    background-color: #17a2b8;
-}
-
-.history-button:hover {
-    background-color: #138496;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.edit-button {
-    background-color: #ffc107;
-}
-
-.edit-button:hover {
-    background-color: #e0a800;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }

@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './Login.css';
+import logoOptica from './assets/logo-optica.jpeg';
 
 const Login = () => {
     const [email, setEmail] = useState('anfeji98@hotmail.com');
-    const [password, setPassword] = useState('pass123'); // Prellenado para pruebas
+    const [password, setPassword] = useState('pass123');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
@@ -19,14 +20,13 @@ const Login = () => {
         setError('');
         try {
             const response = await axios.post('http://localhost:8080/api/auth/login', { email, password });
-            const token = response.data.accessToken; // Ajustado para el nuevo formato de respuesta
+            const token = response.data.accessToken;
             localStorage.setItem('token', token);
             const decoded = jwtDecode(token);
-            const role = decoded.role; // El claim 'role' del token
-            console.log('Decoded role from token:', role); // Depuración
-            // Normalizar el rol a "Admin" (primera letra mayúscula)
+            const role = decoded.role;
+            console.log('Decoded role from token:', role);
             const normalizedRole = role.charAt(0).toUpperCase() + role.slice(1).toLowerCase();
-            localStorage.setItem('role', normalizedRole); // Almacenar el rol en localStorage
+            localStorage.setItem('role', normalizedRole);
             if (normalizedRole === 'Admin') {
                 navigate('/admin-dashboard');
             } else {
@@ -50,6 +50,7 @@ const Login = () => {
     return (
         <div className="login-container">
             <div className="login-box">
+                <img src={logoOptica} alt="Óptica Provisual" className="login-logo" />
                 <h2>Iniciar Sesión</h2>
                 {error && <p className="error-message">{error}</p>}
                 <form onSubmit={handleSubmit}>

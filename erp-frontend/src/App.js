@@ -1,16 +1,24 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Login from './Login';
 import AdminDashboard from './AdminDashboard';
 import UserDashboard from './UserDashboard';
 import PatientRegistration from './PatientRegistration';
 import PatientDetails from './PatientDetails';
 import EditPatient from './EditPatient';
+import Inventory from './Inventory';
+import AddMarco from './AddMarco';
+import EditMarco from './EditMarco';
+import PatientHistory from './PatientHistory';
+import AddHistory from './AddHistory';
 import ProtectedRoute from './ProtectedRoute';
 
 function App() {
     return (
         <Router>
+
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route
@@ -50,6 +58,46 @@ function App() {
                     element={
                         <ProtectedRoute requiredRole="ADMIN">
                             <EditPatient />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/inventory"
+                    element={
+                        <ProtectedRoute requiredRole="ADMIN">
+                            <Inventory />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/add-marco"
+                    element={
+                        <ProtectedRoute requiredRole="ADMIN">
+                            <AddMarco />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/edit-marco/:id"
+                    element={
+                        <ProtectedRoute requiredRole="ADMIN">
+                            <EditMarco />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/patient-history/:id"
+                    element={
+                        <ProtectedRoute requiredRole="ADMIN">
+                            <PatientHistory />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/add-history/:id"
+                    element={
+                        <ProtectedRoute requiredRole="ADMIN">
+                            <AddHistory />
                         </ProtectedRoute>
                     }
                 />
