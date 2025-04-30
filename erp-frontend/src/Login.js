@@ -23,7 +23,11 @@ const Login = () => {
             localStorage.setItem('token', token);
             const decoded = jwtDecode(token);
             const role = decoded.role; // El claim 'role' del token
-            if (role === 'ADMIN') {
+            console.log('Decoded role from token:', role); // Depuración
+            // Normalizar el rol a "Admin" (primera letra mayúscula)
+            const normalizedRole = role.charAt(0).toUpperCase() + role.slice(1).toLowerCase();
+            localStorage.setItem('role', normalizedRole); // Almacenar el rol en localStorage
+            if (normalizedRole === 'Admin') {
                 navigate('/admin-dashboard');
             } else {
                 navigate('/user-dashboard');

@@ -26,8 +26,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-        // Ignorar las rutas de autenticación
-        if (request.getRequestURI().startsWith("/api/auth")) {
+        // Ignorar las rutas de autenticación y solicitudes OPTIONS
+        if (request.getRequestURI().startsWith("/api/auth") || request.getMethod().equals("OPTIONS")) {
             chain.doFilter(request, response);
             return;
         }
