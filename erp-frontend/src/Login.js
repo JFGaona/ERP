@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './Login.css';
-import logoOptica from './assets/logo-optica.jpeg';
+import logoOptica from './assets/logo-optica.png';
 
 const Login = () => {
     const [email, setEmail] = useState('anfeji98@hotmail.com');
@@ -23,6 +23,7 @@ const Login = () => {
             const token = response.data.accessToken;
             localStorage.setItem('token', token);
             const decoded = jwtDecode(token);
+
             const role = decoded.role;
             console.log('Decoded role from token:', role);
             const normalizedRole = role.charAt(0).toUpperCase() + role.slice(1).toLowerCase();

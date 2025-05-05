@@ -1,5 +1,34 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
+  min-height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+  overflow-y: auto; /* Habilita el desplazamiento vertical */
+  scrollbar-width: thin; /* Estilo para Firefox */
+  scrollbar-color: #3498db #f1f1f1; /* Color del scrollbar para Firefox */
+}
+
+/* Estilo del scrollbar para navegadores WebKit (Chrome, Safari, Edge) */
+.App::-webkit-scrollbar {
+  width: 8px;
+}
+
+.App::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.App::-webkit-scrollbar-thumb {
+  background: #3498db;
+  border-radius: 10px;
+}
+
+.App::-webkit-scrollbar-thumb:hover {
+  background: #2980b9;
 }
 
 .App-logo {

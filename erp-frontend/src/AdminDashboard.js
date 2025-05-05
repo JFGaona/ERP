@@ -44,7 +44,7 @@ const AdminDashboard = () => {
     return (
         <div className="admin-dashboard">
             <Breadcrumb />
-            <h1>Panel De Administrador</h1>
+            <h1 className="dashboard-title">Panel De Administrador</h1>
             <div className="dashboard-actions">
                 <button onClick={handleLogout} className="logout-button">
                     Cerrar Sesión
@@ -58,23 +58,30 @@ const AdminDashboard = () => {
             </div>
             <div className="client-list">
                 <div className="client-list-header">
-                    <h2>Clientes</h2>
-                    <input
-                        type="text"
-                        placeholder="Buscar por nombre o cédula..."
-                        value={searchTerm}
-                        onChange={handleSearchChange}
-                        className="search-input"
-                    />
+                    <h2 className="client-list-title">Clientes</h2>
+                    <div className="search-container">
+                        <input
+                            type="text"
+                            placeholder="Buscar por nombre o cédula..."
+                            value={searchTerm}
+                            onChange={handleSearchChange}
+                            className="search-input"
+                        />
+                        <span className="search-icon">🔍</span>
+                    </div>
                 </div>
                 <ul>
-                    {clients.map(client => (
-                        <li key={client.id}>
-                            <Link to={`/patient-details/${client.id}`} className="client-link">
-                                {client.nombre} {client.apellido} - {client.cedula}
-                            </Link>
-                        </li>
-                    ))}
+                    {clients.length > 0 ? (
+                        clients.map(client => (
+                            <li key={client.id}>
+                                <Link to={`/patient-details/${client.id}`} className="client-link">
+                                    {client.nombre} {client.apellido} - {client.cedula}
+                                </Link>
+                            </li>
+                        ))
+                    ) : (
+                        <li className="no-clients">No se encontraron clientes</li>
+                    )}
                 </ul>
             </div>
         </div>
